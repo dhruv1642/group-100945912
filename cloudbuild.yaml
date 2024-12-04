@@ -3,9 +3,9 @@ options:
 
 steps:
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'northamerica-northeast2-docker.pkg.dev/assignment-2-gcp-pipelines/shivam-100964258/$REPO_NAME:$COMMIT_SHA', '.']
+    args: ['build', '-t', 'northamerica-northeast2-docker.pkg.dev/assignment-2-gcp-pipelines/shivam-100964258/assignment-2-gcp-pipelines:$COMMIT_SHA', '.']
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'northamerica-northeast2-docker.pkg.dev/assignment-2-gcp-pipelines/shivam-100964258/$REPO_NAME:$COMMIT_SHA']
+    args: ['push', 'northamerica-northeast2-docker.pkg.dev/assignment-2-gcp-pipelines/shivam-100964258/assignment-2-gcp-pipelines:$COMMIT_SHA']
 
 images:
-  - 'northamerica-northeast2-docker.pkg.dev/assignment-2-gcp-pipelines/shivam-100964258/$REPO_NAME:$COMMIT_SHA'
+  - 'northamerica-northeast2-docker.pkg.dev/assignment-2-gcp-pipelines/shivam-100964258/assignment-2-gcp-pipelines:$COMMIT_SHA'
