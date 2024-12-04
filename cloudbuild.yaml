@@ -6,8 +6,3 @@ steps:
 
 images:
   - 'northamerica-northeast2-docker.pkg.dev/assignment-2-gcp-pipelines/shivam-100964258/$REPO_NAME:$COMMIT_SHA'
-
-
-  options:
-  logging: CLOUD_LOGGING_ONLY
-  defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
