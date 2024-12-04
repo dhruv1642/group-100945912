@@ -1,6 +1,6 @@
 options:
-  logging: REGIONAL_USER_OWNED_BUCKET
-  logs_bucket: gs://319387709687-global-cloudbuild-logs  # Existing Cloud Build log bucket
+  logging: CLOUD_LOGGING_ONLY  # This will log the build to Cloud Logging
+  logs_bucket: gs://319387709687-global-cloudbuild-logs  # Optional if you want to log to Cloud Storage
 
 steps:
   - name: 'gcr.io/cloud-builders/docker'
@@ -10,3 +10,4 @@ steps:
 
 images:
   - 'northamerica-northeast2-docker.pkg.dev/assignment-2-gcp-pipelines/shivam-100964258/$REPO_NAME:$COMMIT_SHA'
+
