@@ -1,26 +1,20 @@
-# Use an official Node.js runtime as the base image
-FROM node:16-slim
+# Step 1: Use the official Node.js image from the Docker Hub
+FROM node:16
 
-# Set the working directory inside the container
+# Step 2: Set the working directory inside the container
 WORKDIR /usr/src/app
 
-# Copy the package.json and package-lock.json (if exists) to install dependencies first
+# Step 3: Copy the package.json and package-lock.json first for better layer caching
 COPY package*.json ./
 
-# Install the dependencies
+# Step 4: Install dependencies
 RUN npm install
 
-# Copy the rest of the application files
+# Step 5: Copy the rest of your application code into the container
 COPY . .
 
-# Expose the port the app will run on (Next.js usually runs on port 3000, but you might need to adjust it)
+# Step 6: Expose the port the app runs on
 EXPOSE 8080
 
-# Set environment variable for Next.js (if using Next.js)
-ENV NODE_ENV production
-
-# Run the Next.js build process (only needed for Next.js, remove if not using Next.js)
-RUN npm run build
-
-# Start the application
-CMD ["npm", "start"] 
+# Step 7: Command to run your app
+CMD ["npm", "start"]
