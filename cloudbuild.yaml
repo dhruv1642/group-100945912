@@ -1,11 +1,17 @@
-options:
-  logging: CLOUD_LOGGING_ONLY  # This will log the build to Cloud Logging (recommended)
-
 steps:
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'us-central1-docker.pkg.dev/assignment-2-gcp-pipelines/shivam-100964258/assignment-2-gcp-pipelines:$COMMIT_SHA', '.']
+    args: 
+      - 'build'
+      - '-t'
+      - 'us-central1-docker.pkg.dev/assignment-2-gcp-pipelines/shivam-100964258/assignment-2-gcp-pipelines:$COMMIT_SHA'
+      - '.'
+
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'us-central1-docker.pkg.dev/assignment-2-gcp-pipelines/shivam-100964258/assignment-2-gcp-pipelines:$COMMIT_SHA']
+    args:
+      - 'push'
+      - 'us-central1-docker.pkg.dev/assignment-2-gcp-pipelines/shivam-100964258/assignment-2-gcp-pipelines:$COMMIT_SHA'
 
 images:
   - 'us-central1-docker.pkg.dev/assignment-2-gcp-pipelines/shivam-100964258/assignment-2-gcp-pipelines:$COMMIT_SHA'
+options:
+  logging: CLOUD_LOGGING_ONLY  # Logs to Cloud Logging (recommended)
