@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # Expose the port the app will run on (Next.js usually runs on port 3000, but you might need to adjust it)
-EXPOSE 3000
+EXPOSE 8080
 
 # Set environment variable for Next.js (if using Next.js)
 ENV NODE_ENV production
