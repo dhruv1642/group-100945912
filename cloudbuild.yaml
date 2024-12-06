@@ -26,3 +26,7 @@ steps:
     - 'us-central1'
     - '--platform'
     - 'managed'
+
+# Options for logging behavior
+options:
+  logging: CLOUD_LOGGING_ONLY
