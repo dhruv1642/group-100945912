@@ -1,39 +1,15 @@
 steps:
-# Step 1: Authenticate Docker with Artifact Registry
-- name: 'gcr.io/cloud-builders/gcloud'
-  args:
-    - 'auth'
-    - 'configure-docker'
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      - 'run'
+      - 'deploy'
+      - 'shivam-100964258-service'  # Name of your Cloud Run service
+      - '--image'
+      - 'us-central1-docker.pkg.dev/mercurial-song-435220-a6/shivam-100964258/app:f01b6cf'  # Use the tag or digest you just pushed
+      - '--region'
+      - 'us-central1'
+      - '--platform'
+      - 'managed'
 
-# Step 2: Build the Docker image
-- name: 'gcr.io/cloud-builders/docker'
-  args:
-    - 'build'
-    - '-t'
-    - 'us-central1-docker.pkg.dev/mercurial-song-435220-a6/shivam-100964258/app:${SHORT_SHA}'
-    - '.'
-
-# Step 3: Push the Docker image to Artifact Registry
-- name: 'gcr.io/cloud-builders/docker'
-  args:
-    - 'push'
-    - 'us-central1-docker.pkg.dev/mercurial-song-435220-a6/shivam-100964258/app:${SHORT_SHA}'
-
-# Step 4: Deploy to Cloud Run
-- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-  entrypoint: 'gcloud'
-  args:
-    - 'run'
-    - 'deploy'
-    - 'shivam-100964258-service'
-    - '--image'
-    - 'us-central1-docker.pkg.dev/mercurial-song-435220-a6/shivam-100964258/app:57e0461'
-    - '--region'
-    - 'us-central1'
-    - '--platform'
-    - 'managed'
-
-options:
-  logging: CLOUD_LOGGING_ONLY
 
 
