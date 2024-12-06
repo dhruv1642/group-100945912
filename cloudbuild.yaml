@@ -27,7 +27,7 @@ steps:
     - 'deploy'
     - 'shivam-100964258-service'
     - '--image'
-    - 'us-central1-docker.pkg.dev/mercurial-song-435220-a6/shivam-100964258/app:${SHORT_SHA}'
+    - 'us-central1-docker.pkg.dev/mercurial-song-435220-a6/shivam-100964258/app:57e0461'
     - '--region'
     - 'us-central1'
     - '--platform'
