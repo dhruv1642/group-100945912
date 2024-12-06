@@ -26,7 +26,3 @@ steps:
     - 'us-central1'
     - '--platform'
     - 'managed'
-
-# Options
-options:
-  logging: REGIONAL_USER_OWNED_BUCKET
