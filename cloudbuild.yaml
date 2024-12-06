@@ -4,7 +4,7 @@ steps:
   args:
     - 'auth'
     - 'configure-docker'
-  
+
 # Step 2: Build the Docker image
 - name: 'gcr.io/cloud-builders/docker'
   args:
@@ -32,7 +32,7 @@ steps:
     - 'us-central1'
     - '--platform'
     - 'managed'
-    - '--allow-unauthenticated'  # Optional, allows unauthenticated access, remove if not needed
 
-images:
-  - 'us-central1-docker.pkg.dev/mercurial-song-435220-a6/shivam-100964258/app:${SHORT_SHA}'
+options:
+  logging: CLOUD_LOGGING_ONLY
+
