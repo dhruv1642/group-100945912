@@ -1,15 +1,19 @@
+options:
+  logs_bucket: gs://my-cloud-build-logs
+
 steps:
   - name: 'gcr.io/cloud-builders/gcloud'
     args:
       - 'run'
       - 'deploy'
-      - 'shivam-100964258-service'  # Name of your Cloud Run service
+      - 'shivam-100964258-service'  # Your Cloud Run service name
       - '--image'
-      - 'us-central1-docker.pkg.dev/mercurial-song-435220-a6/shivam-100964258/app:f01b6cf'  # Use the tag or digest you just pushed
+      - 'us-central1-docker.pkg.dev/mercurial-song-435220-a6/shivam-100964258/app:f01b6cf'
       - '--region'
       - 'us-central1'
       - '--platform'
       - 'managed'
+
 
 
 
