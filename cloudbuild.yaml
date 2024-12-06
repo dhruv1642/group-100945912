@@ -1,5 +1,5 @@
 options:
-  logs_bucket: gs://my-cloud-build-logs
+  logging: CLOUD_LOGGING_ONLY  # Optional: If you don't need logs in a bucket
 
 steps:
   - name: 'gcr.io/cloud-builders/gcloud'
@@ -13,7 +13,3 @@ steps:
       - 'us-central1'
       - '--platform'
       - 'managed'
-
-
-
-
