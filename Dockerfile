@@ -1,4 +1,4 @@
-# Use official Node.js image as the base
+# Use the official Node.js image as a base
 FROM node:14
 
 # Set the working directory inside the container
@@ -13,8 +13,11 @@ RUN npm install --production
 # Copy the rest of the application code
 COPY . .
 
-# Expose the port your app will run on (Cloud Run uses port 8080)
-EXPOSE 8080
+# Copy the static folder (for serving static files like index.html)
+COPY src/static /usr/src/app/static
+
+# Expose the port your app will run on (change this if needed)
+EXPOSE 3000
 
 # Start the application
 CMD ["npm", "start"]
