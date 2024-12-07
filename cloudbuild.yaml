@@ -1,15 +1,30 @@
-options:
-  logging: CLOUD_LOGGING_ONLY  # Optional: If you don't need logs in a bucket
-
 steps:
+  # Step 1: Build the Docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '-t'
+      - 'us-central1-docker.pkg.dev/mercurial-song-435220-a6/shivam-100964258/app:latest'
+      - '.'
+
+  # Step 2: Push the Docker image to Google Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - 'us-central1-docker.pkg.dev/mercurial-song-435220-a6/shivam-100964258/app:latest'
+
+  # Step 3: Deploy the image to Cloud Run
   - name: 'gcr.io/cloud-builders/gcloud'
     args:
       - 'run'
       - 'deploy'
-      - 'shivam-100964258-service'  # Your Cloud Run service name
+      - 'shivam-100964258-service'
       - '--image'
-      - 'us-central1-docker.pkg.dev/mercurial-song-435220-a6/shivam-100964258/app:f01b6cf'
+      - 'us-central1-docker.pkg.dev/mercurial-song-435220-a6/shivam-100964258/app:latest'
       - '--region'
       - 'us-central1'
       - '--platform'
       - 'managed'
+
+images:
+  - 'us-central1-docker.pkg.dev/mercurial-song-435220-a6/shivam-100964258/app:latest'
