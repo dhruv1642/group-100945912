@@ -33,4 +33,4 @@ options:
   logging: CLOUD_LOGGING_ONLY  # Logs only in Cloud Logging
 
 images:
-  - 'us-central1-docker.pkg.dev/crucial-bloom-441721-v1/group-repo/app@sha256:88a47b5341db0bbc72049e3bd0c2c7f52436f7da282ec8fb279686c1cf4c80b9'
+  - 'us-central1-docker.pkg.dev/crucial-bloom-441721-v1/group-repo/app@sha256:30928df38e71dcd58cdc5e543fa0512d2b91cd2984d1fea86aa0cfd7c71862a4'
