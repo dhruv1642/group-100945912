@@ -1,25 +1,20 @@
-# Use the official Python image as a base
-FROM python:3.9-slim
+# Use official Node.js image as the base
+FROM node:14
 
 # Set the working directory inside the container
 WORKDIR /usr/src/app
 
-# Copy the requirements.txt file to install dependencies
-COPY requirements.txt ./
+# Copy package.json and package-lock.json (if available) for efficient caching
+COPY package*.json ./
 
 # Install dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+RUN npm install --production
 
 # Copy the rest of the application code
 COPY . .
 
-# Expose the port that your Flask app will run on
+# Expose the port your app will run on (Cloud Run uses port 8080)
 EXPOSE 8080
 
-# Set environment variables
-ENV FLASK_APP=app.py
-ENV FLASK_RUN_HOST=0.0.0.0
-ENV FLASK_RUN_PORT=8080
-
-# Start the Flask application
-CMD ["flask", "run"]
+# Start the application
+CMD ["npm", "start"]
