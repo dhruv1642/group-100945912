@@ -33,4 +33,4 @@ options:
   logging: CLOUD_LOGGING_ONLY  # Logs only in Cloud Logging
 
 images:
-  - 'us-central1-docker.pkg.dev/crucial-bloom-441721-v1/group-repo/app:$SHORT_SHA'
+  - 'us-central1-docker.pkg.dev/crucial-bloom-441721-v1/group-repo/app:abd3f90'
