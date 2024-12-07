@@ -1,31 +1,38 @@
+
+
 steps:
+  # Step 1: Build the Docker image
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'build'
       - '-t'
-      - 'us-central1-docker.pkg.dev/mercurial-song-435220-a6/shivam-100964258/app:latest'
+      - 'us-central1-docker.pkg.dev/mercurial-song-435220-a6/shivam-100964258/app:$SHORT_SHA'
       - '.'
 
+  # Step 2: Push the Docker image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'push'
-      - 'us-central1-docker.pkg.dev/mercurial-song-435220-a6/shivam-100964258/app:latest'
+      - 'us-central1-docker.pkg.dev/mercurial-song-435220-a6/shivam-100964258/app:$SHORT_SHA'
 
-  - name: 'gcr.io/cloud-builders/gcloud'
+  # Step 3: Deploy the Docker container to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     args:
+      - 'gcloud'
       - 'run'
       - 'deploy'
       - 'shivam-100964258-service'
       - '--image'
-      - 'us-central1-docker.pkg.dev/mercurial-song-435220-a6/shivam-100964258/app:latest'
+      - 'us-central1-docker.pkg.dev/mercurial-song-435220-a6/shivam-100964258/app:$SHORT_SHA'
       - '--region'
       - 'us-central1'
       - '--platform'
       - 'managed'
+    env:
+      - 'CLOUDSDK_CORE_PROJECT=mercurial-song-435220-a6'
 
 options:
   logging: CLOUD_LOGGING_ONLY  # Logs only in Cloud Logging
 
 images:
-  - 'us-central1-docker.pkg.dev/mercurial-song-435220-a6/shivam-100964258/app:latest'
-
+  - 'us-central1-docker.pkg.dev/mercurial-song-435220-a6/shivam-100964258/app:$SHORT_SHA'
